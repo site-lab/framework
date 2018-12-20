@@ -13,6 +13,7 @@ URL：https://www.logw.jp/
 ・apache2.4
 ・mod_sslのインストール
 ・PHP7系のインストール
+・fuelphpのインストール（ドキュメントルートはpublic）
 ・mariaDBのインストール
 ・centosユーザーの作成
 
@@ -207,7 +208,7 @@ ServerAdmin root@localhost
 # documents. By default, all requests are taken from this directory, but
 # symbolic links and aliases may be used to point to other locations.
 #
-DocumentRoot "/var/www/html"
+DocumentRoot "/var/www/html/public"
 
 #
 # Relax access to content within /var/www.
@@ -505,6 +506,30 @@ EOF
         cat /var/www/html/info.php
         end_message
 
+        #Composerインストール
+        start_message
+        curl -sS https://getcomposer.org/installer | php
+        mv composer.phar /usr/local/bin/composer
+        composer --version
+        end_message
+
+        #fuelphpのインストール
+        start_message
+        cd /var/www/
+        git clone --recursive git://github.com/fuel/fuel.git
+        find /var/www/fuel -type d -exec chmod 775 {} +
+        find /var/www/fuel -type f -exec chmod 664 {} +
+        cd fuel
+        composer update
+        php oil refine install
+        end_message
+
+        #シンボリックリンクを貼る
+        cd /var/www/html
+        ln -s /var/www/fuel/public/ public
+
+
+
         #mariaDBのインストール
         start_message
         echo "MariaDB10.3系をインストールします"
@@ -688,11 +713,10 @@ EOF
 
         #所有者の変更
         start_message
-        echo "ドキュメントルートの所有者をcentos、グループをapacheにします"
-        chown "-R centos:apache /var/www/html"
-        chown -R centos:apache /var/www/html
+        echo "所有者をcentos、グループをapacheにします"
+        chown "-R centos:apache /var/www/"
+        chown -R centos:apache /var/www/
         end_message
-
 
 
         # apacheの起動
@@ -743,7 +767,7 @@ EOF
         で確認してみてください
 
         ドキュメントルート(DR)は
-        /var/www/html
+        /var/www/html/public
         となります。
 
         htaccessはドキュメントルートのみ有効化しています
