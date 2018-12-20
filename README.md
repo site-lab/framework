@@ -1,2 +1,34 @@
 # framework
-PHP、Pythonなどのフレームワークを入れていく
+PHP、Pythonのフレームワークを紹介しています。
+※自己責任で実行してください
+
+## テスト環境
+### conohaのVPS
+* メモリ：512MB
+* CPU：1コア
+* SSD：20GB
+
+### さくらのVPS
+* メモリ：512MB
+* CPU：1コア
+* SSD：20GB
+
+### 実行方法
+SFTPなどでアップロードをして、rootユーザーもしくはsudo権限で実行
+wgetを使用する場合は[環境構築スクリプトを公開してます](https://www.logw.jp/cloudserver/8886.html)を閲覧してください。
+wgetがない場合は **yum -y install wget** でインストールしてください
+
+**sh ファイル名.sh** ←同じ階層にある場合
+
+**sh /home/ユーザー名/ファイル名.sh** ユーザー階層にある場合（rootユーザー実行時）
+
+## 共通内容
+* epelインストール
+* gitのインストール
+* システム更新
+* LAMP構築+phpmyadmin
+* HTTP2の有効化
+* firewallのポート許可(80番、443番)
+* gzip圧縮の設定
+* centosユーザーの作成
+* centosユーザーの作成
