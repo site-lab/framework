@@ -499,13 +499,6 @@ EOF
         end_message
 
 
-        # phpinfoの作成
-        start_message
-        touch /var/www/html/info.php
-        echo '<?php phpinfo(); ?>' >> /var/www/html/info.php
-        cat /var/www/html/info.php
-        end_message
-
         #Composerインストール
         start_message
         curl -sS https://getcomposer.org/installer | php
