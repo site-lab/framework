@@ -31,4 +31,21 @@ wgetがない場合は **yum -y install wget** でインストールしてくだ
 * firewallのポート許可(80番、443番)
 * gzip圧縮の設定
 * centosユーザーの作成
-* centosユーザーの作成
+
+## [apache_fuelphp72_mariadb103.sh](https://github.com/site-lab/framework/blob/master/apache_fuelphp72_mariadb103.sh)
+FuelPHPをインストールします。
+PHP7は **モジュール版** となります
+* apache2.4.6
+* PHP7.2
+* MariaDB10.3
+
+となります
+
+## [apache_fuelphp73_mariadb103.sh](https://github.com/site-lab/framework/blob/master/apache_fuelphp73_mariadb103.sh)
+FuelPHPをインストールします。
+PHP7は **モジュール版** となります
+* apache2.4.6
+* PHP7.3
+* MariaDB10.3
+
+となります
