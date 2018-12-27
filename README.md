@@ -51,5 +51,12 @@ PHP7は **モジュール版** となります
 Laraveをインストールします。
 PHP7は **モジュール版** となります
 * apache2.4.6
+* PHP7.2
+* MariaDB10.3
+
+## [apache_laravel73_mariadb103.sh](https://github.com/site-lab/framework/blob/master/apache_laravel72_mariadb103.sh)
+Laraveをインストールします。
+PHP7は **モジュール版** となります
+* apache2.4.6
 * PHP7.3
 * MariaDB10.3
