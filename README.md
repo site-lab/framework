@@ -13,6 +13,11 @@ PHP、Pythonのフレームワークを紹介しています。
 * CPU：1コア
 * SSD：20GB
 
+### さくらのクラウド
+* メモリ：1GB
+* CPU：1コア
+* SSD：20GB
+
 ### 実行方法
 SFTPなどでアップロードをして、rootユーザーもしくはsudo権限で実行
 wgetを使用する場合は[環境構築スクリプトを公開してます](https://www.logw.jp/cloudserver/8886.html)を閲覧してください。
@@ -44,6 +49,13 @@ FuelPHPをインストールします。
 PHP7は **モジュール版** となります
 * apache2.4.6
 * PHP7.2
+* MySQL5.7
+
+## [apache_fuelphp73_mysql57.sh](https://github.com/site-lab/framework/blob/master/apache_fuelphp73_mysql57.sh)
+FuelPHPをインストールします。
+PHP7は **モジュール版** となります
+* apache2.4.6
+* PHP7.3
 * MySQL5.7
 
 
