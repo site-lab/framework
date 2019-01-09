@@ -68,3 +68,10 @@ PHP7は **モジュール版** となります
 * apache2.4.6
 * PHP7.3
 * MariaDB10.3
+
+## [nginx_laravel72_mariadb103_drn.sh](https://github.com/site-lab/framework/blob/master/nginx_laravel72_mariadb103_drn.sh)
+Laraveをインストールします。
+PHP7は **FastCGI版** となります
+* nginx
+* PHP7.2
+* MariaDB10.3
