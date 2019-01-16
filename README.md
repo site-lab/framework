@@ -58,6 +58,13 @@ PHP7は **モジュール版** となります
 * PHP7.3
 * MySQL5.7
 
+## [apache_fuelphp73_mysql80.sh](https://github.com/site-lab/framework/blob/master/apache_fuelphp73_mysql80.sh)
+FuelPHPをインストールします。
+PHP7は **モジュール版** となります
+* apache2.4.6
+* PHP7.3
+* MySQL8.0
+
 
 
 ## [apache_fuelphp73_mariadb103.sh](https://github.com/site-lab/framework/blob/master/apache_fuelphp73_mariadb103.sh)
