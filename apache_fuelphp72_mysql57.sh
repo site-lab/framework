@@ -682,6 +682,11 @@ EOF
         echo "centosユーザーを作成します"
         USERNAME='centos'
         PASSWORD=$(more /dev/urandom  | tr -d -c '[:alnum:]' | fold -w 10 | head -1)
+        #DBrootユーザーのパスワード
+        RPASSWORD=$(more /dev/urandom  | tr -dc '12345678abcdefghijkmnpqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ,.+\-\!' | fold -w 12 | grep -i [12345678] | grep -i '[,.+\-\!]' | head -n 1)
+        #DBuser(centos)パスワード
+        UPASSWORD=$(more /dev/urandom  | tr -dc '12345678abcdefghijkmnpqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ,.+\-\!' | fold -w 12 | grep -i [12345678] | grep -i '[,.+\-\!]' | head -n 1)
+
 
         useradd -m -G apache -s /bin/bash "${USERNAME}"
         echo "${PASSWORD}" | passwd --stdin "${USERNAME}"
@@ -723,6 +728,42 @@ EOF
         systemctl list-unit-files --type=service | grep httpd
         end_message
 
+        #パスワード設定
+        start_message
+        DB_PASSWORD=$(grep "A temporary password is generated" /var/log/mysqld.log | sed -s 's/.*root@localhost: //')
+        #sed -i -e "s|#password =|password = '${DB_PASSWORD}'|" /etc/my.cnf
+        mysql -u root -p${DB_PASSWORD} --connect-expired-password -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '${RPASSWORD}'; flush privileges;"
+        echo ${RPASSWORD}
+
+cat <<EOF >/etc/createdb.sql
+CREATE DATABASE centos;
+CREATE USER 'centos'@'localhost' IDENTIFIED BY '${UPASSWORD}';
+GRANT ALL PRIVILEGES ON centos.* TO 'centos'@'localhost';
+FLUSH PRIVILEGES;
+SELECT user, host FROM mysql.user;
+EOF
+mysql -u root -p${RPASSWORD}  -e "source /etc/createdb.sql"
+
+        end_message
+
+        #ファイルを保存
+        cat <<EOF >/etc/my.cnf.d/centos.cnf
+[client]
+user = centos
+password = ${UPASSWORD}
+host = localhost
+EOF
+
+        systemctl restart mysqld.service
+
+        #ファイルの保存
+        start_message
+        echo "パスワードなどを保存"
+        cat <<EOF >/root/pass.txt
+root = ${RPASSWORD}
+centos = ${UPASSWORD}
+EOF
+        end_message
 
         #firewallのポート許可
         echo "http(80番)とhttps(443番)の許可をしてます"
@@ -743,8 +784,8 @@ EOF
         umask 0002
 
         cat <<EOF
-        http://IPアドレス/info.php
-        https://IPアドレス/info.php
+        http://IPアドレス/
+        https://IPアドレス/
         で確認してみてください
 
         ドキュメントルート(DR)は
@@ -797,9 +838,20 @@ EOF
         http://Iアドレス/phpmyadmin/
         ※パスワードなしログインは禁止となっています。rootのパスワード設定してからログインしてください
         -----------------
+        MySQLへのログイン方法
+        centosユーザーでログインするには下記コマンドを実行してください
+        mysql --defaults-extra-file=/etc/my.cnf.d/centos.cnf
+        -----------------
+        ・slow queryはデフォルトでONとなっています
+        ・秒数は0.01秒となります
+        ・/root/pass.txtにパスワードが保存されています
+        ---------------------------------------------
+
 EOF
 
         echo "centosユーザーのパスワードは"${PASSWORD}"です。"
+        echo "データベースのrootユーザーのパスワードは"${RPASSWORD}"です。"
+        echo "データベースのcentosユーザーのパスワードは"${UPASSWORD}"です。"
 
       else
         echo "CentOS7ではないため、このスクリプトは使えません。このスクリプトのインストール対象はCentOS7です。"
