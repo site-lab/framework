@@ -590,6 +590,9 @@ datadir=/var/lib/mysql
 log-error=/var/log/mysqld.log
 socket=/var/lib/mysql/mysql.sock
 
+#旧式のログインに変更
+default_authentication_plugin=mysql_native_password
+
 character-set-server = utf8mb4
 collation-server = utf8mb4_bin
 default_password_lifetime = 0
