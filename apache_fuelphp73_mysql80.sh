@@ -720,7 +720,7 @@ EOF
         systemctl status httpd.service
         end_message
 
-        #MariaDBの起動
+        #MySQLの起動
         start_message
         systemctl start mysqld.service
         systemctl status mysqld.service
@@ -766,7 +766,7 @@ EOF
 
         #自動起動の設定
         start_message
-        systemctl enable mariadb
+        systemctl enable mysql
         systemctl enable httpd
         systemctl list-unit-files --type=service | grep mysqld
         systemctl list-unit-files --type=service | grep httpd
