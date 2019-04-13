@@ -44,6 +44,16 @@ PHP7は **モジュール版** となります
 * PHP7.2
 * MariaDB10.3
 
+## [apache24u_fuelphp72_mariadb103.sh](https://github.com/site-lab/framework/blob/master/apache24u_fuelphp72_mariadb103.sh)
+FuelPHPをインストールします。
+PHP7は **モジュール版** となります
+* apache2.4.x
+* PHP7.2
+* MariaDB10.3
+
+HTTP2通信対応版となります。HTTP2通信を行う場合はこっちを使って下さい
+
+
 ## [apache_fuelphp72_mysql57.sh](https://github.com/site-lab/framework/blob/master/apache_fuelphp72_mysql57.sh)
 FuelPHPをインストールします。
 PHP7は **モジュール版** となります
