@@ -18,6 +18,11 @@ PHP、Pythonのフレームワークを紹介しています。
 * CPU：1コア
 * SSD：20GB
 
+### IDCFクラウド
+* メモリ：1GB
+* CPU：1コア
+* SSD：15GB
+
 ### 実行方法
 SFTPなどでアップロードをして、rootユーザーもしくはsudo権限で実行
 wgetを使用する場合は[環境構築スクリプトを公開してます](https://www.logw.jp/cloudserver/8886.html)を閲覧してください。
@@ -37,19 +42,6 @@ wgetがない場合は **yum -y install wget** でインストールしてくだ
 * gzip圧縮の設定
 * centosユーザーの作成
 
-## [apache_fuelphp72_mariadb103.sh](https://github.com/site-lab/framework/blob/master/apache_fuelphp72_mariadb103.sh)
-FuelPHPをインストールします。
-PHP7は **モジュール版** となります
-* apache2.4.6
-* PHP7.2
-* MariaDB10.3
-
-## [apache24u_fuelphp72_mariadb103.sh](https://github.com/site-lab/framework/blob/master/apache24u_fuelphp72_mariadb103.sh)
-FuelPHPをインストールします。
-PHP7は **モジュール版** となります
-* apache2.4.x
-* PHP7.2
-* MariaDB10.3
 
 HTTP2通信対応版となります。HTTP2通信を行う場合はこっちを使って下さい
 
@@ -62,21 +54,26 @@ PHP7は **モジュール版** となります
 
 HTTP2通信対応版となります。HTTP2通信を行う場合はこっちを使って下さい
 
-
-
-## [apache_fuelphp72_mysql57.sh](https://github.com/site-lab/framework/blob/master/apache_fuelphp72_mysql57.sh)
+## [apache24_fuelphp_mariadb103.sh](https://github.com/site-lab/framework/blob/master/apache24_fuelphp73_mariadb103.sh)
 FuelPHPをインストールします。
 PHP7は **モジュール版** となります
 * apache2.4.6
-* PHP7.2
-* MySQL5.7
+* PHP7.x
+* MariaDB10.3
 
-## [apache24u_fuelphp72_mysql57.sh](https://github.com/site-lab/framework/blob/master/apache24u_fuelphp72_mysql57.sh)
+## [apache24_fuelphp_mariadb104.sh](https://github.com/site-lab/framework/blob/master/apache24_fuelphp73_mariadb104.sh)
 FuelPHPをインストールします。
 PHP7は **モジュール版** となります
-* apache2.4.x
-* PHP7.2
-* MySQL5.7
+* apache2.4.6
+* PHP7.x
+* MariaDB10.4
+
+## [apache24_fuelphp_mariadb105.sh](https://github.com/site-lab/framework/blob/master/apache24_fuelphp73_mariadb105.sh)
+FuelPHPをインストールします。
+PHP7は **モジュール版** となります
+* apache2.4.6
+* PHP7.x
+* MariaDB10.5
 
 
 ## [apache_fuelphp73_mysql57.sh](https://github.com/site-lab/framework/blob/master/apache_fuelphp73_mysql57.sh)
