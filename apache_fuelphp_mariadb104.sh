@@ -156,15 +156,6 @@ EOF
           fi
         done
 
-        echo "phpをインストールします"
-        echo ""
-        start_message
-        yum -y install --enablerepo=remi,remi-php73 php php-mbstring php-xml php-xmlrpc php-gd php-pdo php-pecl-mcrypt php-mysqlnd php-pecl-mysql phpmyadmin
-        echo "phpのバージョン確認"
-        echo ""
-        php -v
-        echo ""
-        end_message
 
         #php.iniの設定変更
         start_message
