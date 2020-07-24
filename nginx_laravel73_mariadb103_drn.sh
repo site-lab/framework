@@ -5,7 +5,7 @@
 <<COMMENT
 作成者：サイトラボ
 URL：https://www.site-lab.jp/
-URL：https://www.logw.jp/
+https://buildree.com/
 
 注意点：conohaのポートは全て許可前提となります。もしくは80番、443番の許可をしておいてください。システムのfirewallはオン状態となります。centosユーザーのパスワードはランダム生成となります。最後に表示されます
 
@@ -227,16 +227,40 @@ server {
 EOF
         end_message
 
-        # php7系のインストール
-        echo "phpとPHP-FPMをインストールします"
-        echo ""
-        start_message
-        yum -y install --enablerepo=remi,remi-php73 php php-mbstring php-xml php-xmlrpc php-gd php-pdo php-pecl-mcrypt php-mysqlnd php-pecl-mysql php-fpm
-        echo "phpのバージョン確認"
-        echo ""
-        php -v
-        echo ""
-        end_message
+        PS3="インストールしたいPHPのバージョンを選んでください > "
+        ITEM_LIST="PHP7.3 PHP7.4"
+
+        select selection in $ITEM_LIST
+        do
+          if [ $selection = "PHP7.3" ]; then
+            # php7系のインストール
+            echo "phpをインストールします"
+            echo ""
+            start_message
+            yum -y install --enablerepo=remi,remi-php73 php php-mbstring php-xml php-xmlrpc php-gd php-pdo php-pecl-mcrypt php-mysqlnd php-pecl-mysql php-fpm
+            echo "phpのバージョン確認"
+            echo ""
+            php -v
+            echo ""
+            end_message
+            break
+          elif [ $selection = "PHP7.4" ]; then
+            # php7系のインストール
+            echo "php7.4をインストールします"
+            echo ""
+            start_message
+            yum -y install --enablerepo=remi,remi-php74 php php-mbstring php-xml php-xmlrpc php-gd php-pdo php-pecl-mcrypt php-mysqlnd php-pecl-mysql php-fpm
+            echo "phpのバージョン確認"
+            echo ""
+            php -v
+            echo ""
+            end_message
+            break
+
+          else
+            echo "どちらかを選択してください"
+          fi
+        done
 
         #php.iniの設定変更
         start_message
@@ -283,11 +307,17 @@ EOF
         cd /var/www/html
         ln -s /var/www/blog/public/ public
 
-
         #mariaDBのインストール
-        start_message
-        echo "MariaDB10.3系をインストールします"
-        cat >/etc/yum.repos.d/MariaDB.repo <<'EOF'
+        PS4="インストールしたいMariaDBのバージョンを選んでください > "
+        ITEM_LIST="MariaDB-10.3 MariaDB-10.4 MariaDB-10.5"
+
+        select selection in $ITEM_LIST
+        do
+          if [ $selection = "MariaDB-10.3" ]; then
+            #mariaDBのインストール
+            start_message
+            echo "MariaDB10.3系をインストールします"
+            cat >/etc/yum.repos.d/MariaDB.repo <<'EOF'
 # MariaDB 10.3 CentOS repository list
 # http://mariadb.org/mariadb/repositories/
 [mariadb]
@@ -297,10 +327,51 @@ gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
 gpgcheck=1
 EOF
 
-        yum -y install mariadb-server maradb-client
-        yum list installed | grep mariadb
+            yum -y install mariadb-server maradb-client
+            yum list installed | grep mariadb
+            end_message
+            break
+          elif [ $selection = "MariaDB-10.4" ]; then
+            #mariaDBのインストール
+            start_message
+            echo "MariaDB10.3系をインストールします"
+            cat >/etc/yum.repos.d/MariaDB.repo <<'EOF'
+# MariaDB 10.4 CentOS repository list
+# http://mariadb.org/mariadb/repositories/
+[mariadb]
+name = MariaDB
+baseurl = http://yum.mariadb.org/10.4/centos7-amd64
+gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+gpgcheck=1
+EOF
+            yum -y install mariadb-server maradb-client
+            yum list installed | grep mariadb
+            end_message
+            break
 
-        end_message
+          elif [ $selection = "MariaDB-10.5" ]; then
+            #mariaDBのインストール
+            start_message
+            echo "MariaDB10.3系をインストールします"
+            cat >/etc/yum.repos.d/MariaDB.repo <<'EOF'
+# MariaDB 10.5 CentOS repository list
+# http://mariadb.org/mariadb/repositories/
+[mariadb]
+name = MariaDB
+baseurl = http://yum.mariadb.org/10.5/centos7-amd64
+gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+gpgcheck=1
+EOF
+            yum -y install mariadb-server maradb-client
+            yum list installed | grep mariadb
+            end_message
+            break
+
+          else
+            echo "どれかを選択してください"
+          fi
+        done
+
 
         #ファイル作成
         start_message
@@ -365,10 +436,11 @@ character-set-server = utf8
 # you can put MariaDB-only options here
 [mariadb]
 
-# This group is only read by MariaDB-10.3 servers.
+# This group is only read by MariaDB-10.x servers.
 # If you use the same .cnf file for MariaDB of different versions,
 # use this group for options that older servers don't understand
-[mariadb-10.3]
+[mariadb-10.x]
+${ITEM_LIST}
 EOF
 
 
