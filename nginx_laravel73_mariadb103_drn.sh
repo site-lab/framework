@@ -63,7 +63,7 @@ if [ -e /etc/redhat-release ]; then
         echo ""
 
         start_message
-        yum -y update
+        #yum -y update
         end_message
 
         #ドキュメントルートの作成
@@ -288,7 +288,8 @@ EOF
         #Composerインストール
         start_message
         curl -sS https://getcomposer.org/installer | php
-        mv composer.phar /usr/local/bin/composer
+        cp composer.phar /usr/local/bin/composer
+        cp composer.phar /usr/local/sbin/composer  #azure向け
         composer --version
         end_message
 
