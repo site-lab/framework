@@ -1,6 +1,9 @@
 # framework
 PHP、Pythonのフレームワークを紹介しています。
 ※自己責任で実行してください
+Microsoft Azureでは上手く動作しておりません
+
+- apache_laravel73_mariadb103
 
 ## テスト環境
 ### conohaのVPS
