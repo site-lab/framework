@@ -63,7 +63,7 @@ if [ -e /etc/redhat-release ]; then
         echo ""
 
         start_message
-        #yum -y update
+        yum -y update
         end_message
 
         #ドキュメントルートの作成
@@ -335,7 +335,7 @@ EOF
           elif [ $selection = "MariaDB-10.4" ]; then
             #mariaDBのインストール
             start_message
-            echo "MariaDB10.3系をインストールします"
+            echo "MariaDB10.4系をインストールします"
             cat >/etc/yum.repos.d/MariaDB.repo <<'EOF'
 # MariaDB 10.4 CentOS repository list
 # http://mariadb.org/mariadb/repositories/
@@ -353,7 +353,7 @@ EOF
           elif [ $selection = "MariaDB-10.5" ]; then
             #mariaDBのインストール
             start_message
-            echo "MariaDB10.3系をインストールします"
+            echo "MariaDB10.5系をインストールします"
             cat >/etc/yum.repos.d/MariaDB.repo <<'EOF'
 # MariaDB 10.5 CentOS repository list
 # http://mariadb.org/mariadb/repositories/
