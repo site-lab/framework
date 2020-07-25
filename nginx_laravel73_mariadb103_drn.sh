@@ -488,12 +488,23 @@ EOF
         systemctl status nginx
         end_message
 
+        #MariaDBの起動
+        start_message
+        echo "nginxの起動"
+        echo ""
+        systemctl start mariadb
+        systemctl status mariadb
+        end_message
+
+
         #自動起動の設定
         start_message
         systemctl enable nginx
         systemctl enable php-fpm
+        systemctl enable mariadb
         systemctl list-unit-files --type=service | grep nginx
         systemctl list-unit-files --type=service | grep php-fpm
+        systemctl list-unit-files --type=service | grep mariadb
         end_message
 
         #firewallのポート許可
