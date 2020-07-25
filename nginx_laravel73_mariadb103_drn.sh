@@ -37,6 +37,12 @@ if [ -e /etc/redhat-release ]; then
 
     if [ $DIST = "redhat" ];then
       if [ $DIST_VER = "7" ];then
+
+        #SELinuxの確認
+        start_message
+        echo "SELinuxが有効化の場合は無効化します"
+        sed -i -e "s|SELINUX=enforcing =|SELINUX=disabled|" /etc/selinux/config
+        end_message
         #EPELリポジトリのインストール
         start_message
         yum remove -y epel-release
@@ -289,7 +295,7 @@ EOF
         start_message
         curl -sS https://getcomposer.org/installer | php
         cp composer.phar /usr/local/bin/composer
-        cp composer.phar /usr/local/sbin/composer  #azure向け
+        #cp composer.phar /usr/local/sbin/composer  #azure向け
         composer --version
         end_message
 
@@ -441,7 +447,6 @@ character-set-server = utf8
 # If you use the same .cnf file for MariaDB of different versions,
 # use this group for options that older servers don't understand
 [mariadb-10.x]
-${ITEM_LIST}
 EOF
 
 
@@ -462,8 +467,8 @@ EOF
 
         #所有者の変更
         start_message
-        echo "ドキュメントルートの所有者をcentos、グループをapacheにします"
-        chown -R centos:nginx /usr/share/nginx/html
+        echo "ドキュメントルートの所有者をcentos、グループをnginxにします"
+        chown -R centos:nginx /var/www/
         end_message
 
         #php-fpmの起動
@@ -529,6 +534,8 @@ EOF
         ドキュメントルートの所有者：centos
         グループ：nginx
         になっているため、ユーザー名とグループの変更が必要な場合は変更してください
+
+        閲覧できない場合はSELinuxは無効化してください。
 
 EOF
 
