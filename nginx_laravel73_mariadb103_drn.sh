@@ -9,6 +9,8 @@ https://buildree.com/
 
 注意点：conohaのポートは全て許可前提となります。もしくは80番、443番の許可をしておいてください。システムのfirewallはオン状態となります。centosユーザーのパスワードはランダム生成となります。最後に表示されます
 
+SELinuxが有効化の場合は無効化してください
+
 目的：システム更新+nginxのインストール
 ・nginx
 ・mod_sslのインストール
@@ -38,11 +40,6 @@ if [ -e /etc/redhat-release ]; then
     if [ $DIST = "redhat" ];then
       if [ $DIST_VER = "7" ];then
 
-        #SELinuxの確認
-        start_message
-        echo "SELinuxが有効化の場合は無効化します"
-        sed -i -e "s|SELINUX=enforcing =|SELINUX=disabled|" /etc/selinux/config
-        end_message
         #EPELリポジトリのインストール
         start_message
         yum remove -y epel-release
@@ -69,12 +66,12 @@ if [ -e /etc/redhat-release ]; then
         echo ""
 
         start_message
-        yum -y update
+        #yum -y update
         end_message
 
         #ドキュメントルートの作成
         start_message
-        mkdir /var/www/ && mkdir /var/www/html
+        mkdir -p /var/www/ && mkdir /var/www/html
         end_message
 
 
