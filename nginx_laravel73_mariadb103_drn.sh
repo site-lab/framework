@@ -294,8 +294,7 @@ EOF
         #Composerインストール
         start_message
         curl -sS https://getcomposer.org/installer | php
-        cp composer.phar /usr/local/bin/composer
-        #cp composer.phar /usr/local/sbin/composer  #azure向け
+        mv composer.phar /usr/local/bin/composer
         composer --version
         end_message
 
