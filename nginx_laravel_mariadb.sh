@@ -71,7 +71,7 @@ if [ -e /etc/redhat-release ]; then
 
         #ドキュメントルートの作成
         start_message
-        mkdir -p /var/www/ && mkdir /var/www/html
+        mkdir -p /var/www/ && mkdir -p /var/www/html
         end_message
 
 
