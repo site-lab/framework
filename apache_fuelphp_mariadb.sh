@@ -78,7 +78,7 @@ if [ -e /etc/redhat-release ]; then
         echo "apacheをインストールします"
         echo ""
 
-        PS2="インストールしたいapacheのバージョンを選んでください > "
+        PS3="インストールしたいapacheのバージョンを選んでください > "
         ITEM_LIST="apache2.4.6 apache2.4.x"
 
         select selection in $ITEM_LIST
