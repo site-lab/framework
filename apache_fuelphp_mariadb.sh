@@ -71,7 +71,7 @@ if [ -e /etc/redhat-release ]; then
         echo ""
 
         start_message
-        #yum -y update
+        yum -y update
         end_message
 
         # apacheのインストール
@@ -268,7 +268,7 @@ EOF
         ln -s /var/www/fuel/public/ public
 
         #MariaDBのインストール
-        PS4="インストールしたいMariaDBのバージョンを選んでください > "
+        PS3="インストールしたいMariaDBのバージョンを選んでください > "
         ITEM_LIST="MariaDB10.3 MariaDB10.4 MariaDB10.5"
 
         select selection in $ITEM_LIST
