@@ -46,7 +46,25 @@ wgetがない場合は **yum -y install wget** でインストールしてくだ
 * centosユーザーの作成
 
 
-HTTP2通信対応版となります。HTTP2通信を行う場合はこっちを使って下さい
+## [apacheu_fuelphp_mysql.sh](https://github.com/site-lab/framework/blob/master/apacheu_fuelphp_mysql.sh)
+Laraveをインストールします。
+PHP7は **モジュール版** となります
+* apache2.4系
+* PHP7系
+* MySQL5or8
+
+※インストールするソフトは全て選択式となります
+
+
+## [apacheu_fuelphp_mariadb.sh](https://github.com/site-lab/framework/blob/master/apache_fuelphp_mariadb.sh)
+FuelPHPをインストールします。
+PHP7は **モジュール版** となります
+* apache2.4系
+* PHP7系
+* MariaDB10系
+
+※インストールするソフトは全て選択式となります
+
 
 ## [apache24u_fuelphp73_mariadb103.sh](https://github.com/site-lab/framework/blob/master/apache24u_fuelphp73_mariadb103.sh)
 FuelPHPをインストールします。
