@@ -2,6 +2,7 @@
 PHP、Pythonのフレームワークを紹介しています。
 ※自己責任で実行してください
 ※SELinuxは無効化してください
+※rootでの実行を推奨します
 
 - apache_laravel73_mariadb103
 

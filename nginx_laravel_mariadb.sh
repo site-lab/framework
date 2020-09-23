@@ -312,29 +312,11 @@ EOF
 
         #mariaDBのインストール
         PS4="インストールしたいMariaDBのバージョンを選んでください > "
-        ITEM_LIST="MariaDB-10.3 MariaDB-10.4 MariaDB-10.5"
+        ITEM_LIST="MariaDB-10.4 MariaDB-10.5"
 
         select selection in $ITEM_LIST
         do
-          if [ $selection = "MariaDB-10.3" ]; then
-            #mariaDBのインストール
-            start_message
-            echo "MariaDB10.3系をインストールします"
-            cat >/etc/yum.repos.d/MariaDB.repo <<'EOF'
-# MariaDB 10.3 CentOS repository list
-# http://mariadb.org/mariadb/repositories/
-[mariadb]
-name = MariaDB
-baseurl = http://yum.mariadb.org/10.3/centos7-amd64
-gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
-gpgcheck=1
-EOF
-
-            yum -y install mariadb-server maradb-client
-            yum list installed | grep mariadb
-            end_message
-            break
-          elif [ $selection = "MariaDB-10.4" ]; then
+          if [ $selection = "MariaDB-10.4" ]; then
             #mariaDBのインストール
             start_message
             echo "MariaDB10.4系をインストールします"
@@ -486,7 +468,7 @@ EOF
 
         #MariaDBの起動
         start_message
-        echo "nginxの起動"
+        echo "MariaDBの起動"
         echo ""
         systemctl start mariadb
         systemctl status mariadb
