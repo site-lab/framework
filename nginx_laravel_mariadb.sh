@@ -288,6 +288,14 @@ EOF
 
         end_message
 
+        #swapの設定
+        start_message
+        dd if=/dev/zero of=/swapfile bs=1M count=2048
+        chmod 600 /swapfile
+        mkswap /swapfile
+        swapon /swapfile
+        end_message
+
         #Composerインストール
         start_message
         curl -sS https://getcomposer.org/installer | php
