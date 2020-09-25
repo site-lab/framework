@@ -40,6 +40,19 @@ if [ -e /etc/redhat-release ]; then
     if [ $DIST = "redhat" ];then
       if [ $DIST_VER = "7" ];then
 
+        #SELinuxの確認
+        SElinux=`which getenforce`
+        if [ "`${SElinux}`" = "Disabled" ]; then
+          echo "SElinuxは無効なのでそのまま続けていきます"
+        else
+          echo "SElinux有効のため、一時的に無効化します"
+          setenforce 0
+          getenforce
+          #exit 1
+        fi
+
+
+
         #EPELリポジトリのインストール
         start_message
         yum remove -y epel-release
