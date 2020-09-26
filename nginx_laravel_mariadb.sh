@@ -315,6 +315,8 @@ EOF
 
 
         #バージョン表示
+        start_message
+        echo "composerが使えるか確認します。"
         composer --version
         end_message
 
