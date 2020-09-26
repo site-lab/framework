@@ -47,6 +47,8 @@ if [ -e /etc/redhat-release ]; then
         else
           echo "SElinux有効のため、一時的に無効化します"
           setenforce 0
+
+          echo "一時的に無効化されているか確認します。Permissive になっていれば一時的に無効化された状態となります"
           getenforce
           #exit 1
         fi
@@ -303,6 +305,7 @@ EOF
 
         #swapの設定
         start_message
+        echo "スワップの設定をしています"
         dd if=/dev/zero of=/swapfile bs=1M count=2048
         chmod 600 /swapfile
         mkswap /swapfile
