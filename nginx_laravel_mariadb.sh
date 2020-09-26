@@ -256,7 +256,7 @@ EOF
             echo "phpをインストールします"
             echo ""
             start_message
-            yum -y install --enablerepo=remi,remi-php73 php php-mbstring php-xml php-xmlrpc php-gd php-pdo php-pecl-mcrypt php-mysqlnd php-pecl-mysql php-fpm
+            yum -y install --enablerepo=remi,remi-php73 php php-mbstring php-xml php-xmlrpc php-gd php-pdo php-pecl-mcrypt php-mysqlnd php-pecl-mysql php-pecl-zip php-fpm composer
             echo "phpのバージョン確認"
             echo ""
             php -v
@@ -268,7 +268,7 @@ EOF
             echo "php7.4をインストールします"
             echo ""
             start_message
-            yum -y install --enablerepo=remi,remi-php74 php php-mbstring php-xml php-xmlrpc php-gd php-pdo php-pecl-mcrypt php-mysqlnd php-pecl-mysql php-fpm
+            yum -y install --enablerepo=remi,remi-php74 php php-mbstring php-xml php-xmlrpc php-gd php-pdo php-pecl-mcrypt php-mysqlnd php-pecl-mysql php-pecl-zip php-fpm composer
             echo "phpのバージョン確認"
             echo ""
             php -v
@@ -313,10 +313,6 @@ EOF
         swapon /swapfile
         end_message
 
-        #Composerインストール
-        start_message
-        curl -sS https://getcomposer.org/installer | php
-        mv composer.phar /usr/local/bin/composer
 
         #バージョン表示
         composer --version
