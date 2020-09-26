@@ -317,8 +317,6 @@ EOF
         start_message
         curl -sS https://getcomposer.org/installer | php
         mv composer.phar /usr/local/bin/composer
-        chown root:root /usr/local/bin/composer
-        chown root:root /usr/local/bin/composer
 
         #バージョン表示
         composer --version
