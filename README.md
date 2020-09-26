@@ -1,8 +1,10 @@
 # framework
 PHP、Pythonのフレームワークを紹介しています。
 ※自己責任で実行してください
-※SELinuxは無効化してください
-※rootでの実行を推奨します
+
+SELinuxの確認をし、有効の場合は一時的に無効化するように修正しました
+
+sudo権限でインストールできないエラーを修正しております
 
 - apache_laravel73_mariadb103
 
@@ -67,21 +69,6 @@ PHP7は **モジュール版** となります
 ※インストールするソフトは全て選択式となります
 
 
-## [apache24u_fuelphp73_mariadb103.sh](https://github.com/site-lab/framework/blob/master/apache24u_fuelphp73_mariadb103.sh)
-FuelPHPをインストールします。
-PHP7は **モジュール版** となります
-* apache2.4.x
-* PHP7.3
-* MariaDB10.3
-
-HTTP2通信対応版となります。HTTP2通信を行う場合はこっちを使って下さい
-
-## [apache24_fuelphp_mariadb103.sh](https://github.com/site-lab/framework/blob/master/apache24_fuelphp73_mariadb103.sh)
-FuelPHPをインストールします。
-PHP7は **モジュール版** となります
-* apache2.4.6
-* PHP7.x
-* MariaDB10.3
 
 ## [apache24_fuelphp_mariadb104.sh](https://github.com/site-lab/framework/blob/master/apache24_fuelphp73_mariadb104.sh)
 FuelPHPをインストールします。
@@ -111,20 +98,3 @@ PHP7は **モジュール版** となります
 * apache2.4.6
 * PHP7.3
 * MySQL8.0
-
-
-
-## [apache_fuelphp73_mariadb103.sh](https://github.com/site-lab/framework/blob/master/apache_fuelphp73_mariadb103.sh)
-FuelPHPをインストールします。
-PHP7は **モジュール版** となります
-* apache2.4.6
-* PHP7.3
-* MariaDB10.3
-
-
-## [apache_laravel73_mariadb103.sh](https://github.com/site-lab/framework/blob/master/apache_laravel72_mariadb103.sh)
-Laraveをインストールします。
-PHP7は **モジュール版** となります
-* apache2.4.6
-* PHP7.3
-* MariaDB10.3
