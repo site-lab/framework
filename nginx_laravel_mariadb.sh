@@ -245,6 +245,7 @@ server {
 EOF
         end_message
 
+        echo "PHPのインストールをします。バージョンの選択をしてください"
         PS3="インストールしたいPHPのバージョンを選んでください > "
         ITEM_LIST="PHP7.3 PHP7.4"
 
