@@ -39,6 +39,20 @@ if [ -e /etc/redhat-release ]; then
 
     if [ $DIST = "redhat" ];then
       if [ $DIST_VER = "7" ];then
+
+        #SELinuxの確認
+        SElinux=`which getenforce`
+        if [ "`${SElinux}`" = "Disabled" ]; then
+          echo "SElinuxは無効なのでそのまま続けていきます"
+        else
+          echo "SElinux有効のため、一時的に無効化します"
+          setenforce 0
+
+          echo "一時的に無効化されているか確認します。Permissive になっていれば一時的に無効化された状態となります"
+          getenforce
+        fi
+
+
         # yumのキャッシュをクリア
         echo "yum clean allを実行します"
         start_message
@@ -213,7 +227,7 @@ EOF
             echo "php7.3をインストールします"
             echo ""
             start_message
-            yum -y install --enablerepo=remi,remi-php73 php php-common php-pecl-zip php-mbstring php-xml php-xmlrpc php-gd php-pdo php-pecl-mcrypt php-mysqlnd php-pecl-mysql phpmyadmin
+            yum -y install --enablerepo=remi,remi-php73 php php-common php-pecl-zip php-mbstring php-xml php-xmlrpc php-gd php-pdo php-pecl-mcrypt php-mysqlnd php-pecl-mysql phpmyadmin php-pecl-zip composer
             echo "phpのバージョン確認"
             echo ""
             php -v
@@ -226,7 +240,7 @@ EOF
             echo "php7.4をインストールします"
             echo ""
             start_message
-            yum -y install --enablerepo=remi,remi-php74 php php-common php-pecl-zip php-mbstring php-xml php-xmlrpc php-gd php-pdo php-pecl-mcrypt php-mysqlnd php-pecl-mysql phpmyadmin
+            yum -y install --enablerepo=remi,remi-php74 php php-common php-pecl-zip php-mbstring php-xml php-xmlrpc php-gd php-pdo php-pecl-mcrypt php-mysqlnd php-pecl-mysql phpmyadmin php-pecl-zip composer
             echo "phpのバージョン確認"
             echo ""
             php -v
@@ -409,8 +423,7 @@ EOF
 
         #Composerインストール
         start_message
-        curl -sS https://getcomposer.org/installer | php
-        mv composer.phar /usr/local/bin/composer
+        echo "composerのインストールされているか確認をします"
         composer --version
         end_message
 
@@ -639,7 +652,7 @@ EOF
         ダイアログがでればhtaccessが有効かされた状態となります。
 
         ●HTTP2について
-        このApacheはHTTP/2に非対応となります。ApacheでHTTP2を使う場合は2.4.17以降が必要となります。
+        Apache2.4.xを選択するとHTTP2通信が可能となります
 
         これにて終了です
 
