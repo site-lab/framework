@@ -533,10 +533,10 @@ EOF
 
         #MariaDBの起動
         start_message
-        echo "MariaDBの起動"
+        echo "MySQLの起動"
         echo ""
-        systemctl start mariadb
-        systemctl status mariadb
+        systemctl start mysqld
+        systemctl status mysqld
         end_message
 
 
